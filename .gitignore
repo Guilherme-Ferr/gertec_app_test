@@ -15,8 +15,7 @@
 /.idea/assetWizardSettings.xml
 .DS_Store
 /build
-/Java/tc-server-v2/lib
-/Java/tc-server-v2_Original/lib
+
 /captures
 /Android/Debug
 /obj

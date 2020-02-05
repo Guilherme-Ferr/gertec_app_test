@@ -7,6 +7,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
+
 import br.com.gertec.gedi.GEDI;
 import br.com.gertec.gedi.enums.GEDI_PRNTR_e_Alignment;
 import br.com.gertec.gedi.enums.GEDI_PRNTR_e_BarCodeType;
@@ -27,7 +31,6 @@ public class GertecPrinter {
     private static boolean isPrintInit = false;
 
     // Vaviáveis iniciais
-    private Activity activity;
     private Context context;
 
     // Classe de impressão
@@ -44,11 +47,9 @@ public class GertecPrinter {
 
     /**
      * Método construtor da classe
-     * @param a = Activity atual que esta sendo inicializada a class
      * @param c = Context  atual que esta sendo inicializada a class
      * */
-    public GertecPrinter(Activity a, Context c) {
-        this.activity = a;
+    public GertecPrinter(Context c) {
         this.context = c;
         startIGEDI();
     }
@@ -62,11 +63,12 @@ public class GertecPrinter {
      * */
     private void startIGEDI() {
         new Thread(() -> {
-            this.iGedi = GEDI.getInstance(activity);
+            GEDI.init(this.context);
+            this.iGedi = GEDI.getInstance(this.context);
             this.iPrint = this.iGedi.getPRNTR();
             try {
-                this.ImpressoraInit();
-            } catch (GediException e) {
+                new Thread().sleep(250);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }).start();
@@ -419,6 +421,85 @@ public class GertecPrinter {
             throw new GediException(e.getErrorCode());
         }
 
+    }
+
+    /**
+     * Método que faz a impressão de código de barras
+     *
+     * @param texto = Texto que será usado para a impressão do código de barras
+     * @param height  = Tamanho
+     * @param width  = Tamanho
+     * @param barCodeType  = Tipo do código que será impresso
+     *
+     * @throws IllegalArgumentException = Argumento passado ilegal
+     * @throws GediException = retorna o código do erro.
+     *
+     * */
+    public boolean imprimeBarCodeIMG( String texto, int height, int width,  String barCodeType ) throws GediException {
+
+        BarcodeFormat barCodeConfig;
+
+        try {
+            MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+
+
+            ImpressoraInit();
+            this.iPrint.DrawBarCode(barCodeConfig,texto);
+            this.avancaLinha(configPrint.getAvancaLinhas());
+            //ImpressoraOutput();
+            //this.iPrint.Output();
+            return true;
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException(e);
+        } catch (GediException e) {
+            throw new GediException(e.getErrorCode());
+        }
+
+    }
+
+    private BarcodeFormat (String barCodeType){
+
+        BarcodeFormat barcodeFormat;
+
+        switch (barCodeType){
+            /** Aztec 2D barcode format. */
+            case "AZTEC":
+                barcodeFormat = b
+             /** CODABAR 1D format. */
+            case "CODABAR":
+            /** Code 39 1D format. */
+            case "CODE_39":
+            /** Code 93 1D format. */
+            case "CODE_93":
+            /** Code 128 1D format. */
+            case "CODE_128":
+            /** Data Matrix 2D barcode format. */
+            case "DATA_MATRIX":
+            /** EAN-8 1D format. */
+            case "EAN_8":
+            /** EAN-13 1D format. */
+            case "EAN_13":
+            /** ITF (Interleaved Two of Five) 1D format. */
+            case "ITF":
+            /** MaxiCode 2D barcode format. */
+            case "MAXICODE":
+            /** PDF417 format. */
+            case "PDF_417":
+            /** QR Code 2D barcode format. */
+            case "QR_CODE":
+            /** RSS 14 */
+            case "RSS_14":
+            /** RSS EXPANDED */
+            case "RSS_EXPANDED":
+            /** UPC-A 1D format. */
+            case "UPC_A":
+            /** UPC-E 1D format. */
+            case "UPC_E":
+            /** UPC/EAN extension format. Not a stand-alone format. */
+            case "UPC_EAN_EXTENSION":
+        }
+
+        return barcodeFormat;
     }
 
     /**

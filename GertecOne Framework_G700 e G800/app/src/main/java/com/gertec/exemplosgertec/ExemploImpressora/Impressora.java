@@ -76,7 +76,7 @@ public class Impressora extends AppCompatActivity implements View.OnClickListene
         initButtonsOnClick();
 
         // Inicializa a class de impressão
-        gertecPrinter = new GertecPrinter(this, getApplicationContext());
+        gertecPrinter = new GertecPrinter(getApplicationContext());
         gertecPrinter.setConfigImpressao(configPrint);
 
     }
