@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
@@ -57,14 +58,10 @@ dependencies {
     implementation 'me.dm7.barcodescanner:zxing:1.9.8'
     implementation ('com.journeyapps:zxing-android-embedded:3.4.0')
 
+    // Lib exclusiva para o GPOS700
     implementation(name: 'payment-1.14.10.181016', ext: 'aar')
-    //Smart Store
-    // implementation(name:'libgedi-0.190121.gpos800', ext:'aar')
 
-    // Lembrete...
-    // Esta lib do GPOS800 foi modificada pelo Marcos e Geovani
-    // Dentro da mesma não existe o zxing.jar.
-    // Já a oroginal existe esse arquivo
+    // Lib  exclusiva para o TSG800
     // implementation(name:'libgedi-0.190121.gpos800', ext:'aar')
 
 }

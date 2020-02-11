@@ -21,6 +21,7 @@ import com.gertec.exemplosgertec.ExemploImpressora.Impressora;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
     public static final String G700x = "GPOS700";
     public static final String G800x = "Smart G800";
     private static final String version = "RC03";

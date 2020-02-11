@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.MifareClassic;
+import android.nfc.tech.MifareUltralight;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -21,9 +22,10 @@ public class NfcExemploId extends AppCompatActivity {
 
     // Adaptador NFC
     private NfcAdapter nfcAdapter;
-
-    // Class MifareClassic
+    // Class MifareClassic tipo de cartao q ele vai ler os 2 mais usados no mercado, cada um trabalha de uma maneira, grava texto, grava por setor
+    // depende do cartao o nosso desenvolvimento
     private MifareClassic mifareClassic;
+    private MifareUltralight mifareUltralight;
 
     // Tag do Cartão
     private Tag tag;
@@ -40,15 +42,15 @@ public class NfcExemploId extends AppCompatActivity {
         setContentView(R.layout.nfcexemploid);
         text = findViewById(R.id.lblText);
     }
-
+    //ciclo de vida do activity
     @Override
-    protected void onStart() {
+    protected void onStart() { //trecho principal pra ligar o NFC
         super.onStart();
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume() { //filtrar todas as tags que queremos define as tabs de cartao, passa pro ident filter
         super.onResume();
 
         Log.d(TAG, "onResume");
@@ -67,12 +69,12 @@ public class NfcExemploId extends AppCompatActivity {
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
+    protected void onNewIntent(Intent intent) { //carrega a aplicação
         super.onNewIntent(intent);
         try {
             tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
             if(tag == null){
-                Toast.makeText(getApplicationContext(), "Não foi possível ler o cartão.", Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "Não foi possível ler o cartão.", Toast.LENGTH_SHORT).show();
             }else{
                 LerCartaoNfc();
             }
@@ -89,7 +91,7 @@ public class NfcExemploId extends AppCompatActivity {
     }
 
     // Converte o ID do cartão que esta em Bytes para String
-    public String idCartao() {
+    public String idCartao() { //de bite pra string depois
 
         byte[] idCartao = mifareClassic.getTag().getId();
         long result = 0;
