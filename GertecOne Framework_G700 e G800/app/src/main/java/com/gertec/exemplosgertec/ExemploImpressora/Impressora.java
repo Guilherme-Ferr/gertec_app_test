@@ -16,6 +16,7 @@ import android.widget.ToggleButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.gertec.exemplosgertec.MainActivity;
 import com.gertec.exemplosgertec.R;
 
 import br.com.gertec.gedi.enums.GEDI_PRNTR_e_Status;
@@ -76,7 +77,12 @@ public class Impressora extends AppCompatActivity implements View.OnClickListene
         initButtonsOnClick();
 
         // Inicializa a class de impressão
-        gertecPrinter = new GertecPrinter(getApplicationContext());
+        if(MainActivity.Model.equals(MainActivity.G700)){
+            gertecPrinter = new GertecPrinter(this.getApplicationContext());
+        }else{
+            // gertecPrinter = new GertecPrinter(this);
+        }
+
         gertecPrinter.setConfigImpressao(configPrint);
 
     }
@@ -115,11 +121,6 @@ public class Impressora extends AppCompatActivity implements View.OnClickListene
                         configPrint = new ConfigPrint();
                         gertecPrinter.setConfigImpressao(configPrint);
                         gertecPrinter.imprimeImagem("invoice");
-                        gertecPrinter.imprimeImagem("teste001");
-                        // gertecPrinter.imprimeImagem("invoice_colorido");
-                        // gertecPrinter.imprimeImagem("invoice_pb");
-                        // Usado apenas no exemplo, esse pratica não deve
-                        // ser repetida na impressão em produção
                         gertecPrinter.avancaLinha(150);
                         gertecPrinter.ImpressoraOutput();
                     }else{
@@ -154,7 +155,6 @@ public class Impressora extends AppCompatActivity implements View.OnClickListene
                             ShowFalha(sStatus);
                         }
                     }
-
 
                 } catch (GediException e) {
                     e.printStackTrace();
@@ -399,14 +399,19 @@ public class Impressora extends AppCompatActivity implements View.OnClickListene
             // Fim Impressão BarCode 128
 
             // Impressão BarCode 13
+            gertecPrinter.setConfigImpressao(configPrint);
+            gertecPrinter.imprimeTexto("===[Codigo QrCode Gertec LIB]==");
+            gertecPrinter.avancaLinha(10);
+            gertecPrinter.imprimeBarCode("Gertec Developer Partner LIB", 240,240,"QR_CODE");
+
             configPrint.setNegrito(false);
             configPrint.setItalico(false);
             configPrint.setSublinhado(false);
-            configPrint.setAlinhamento("LEFT");
+            configPrint.setAlinhamento("CENTER");
             configPrint.setTamanho(20);
-            gertecPrinter.setConfigImpressao(configPrint);
-            gertecPrinter.imprimeTexto("====[Codigo QrCode Gertec]====");
-            gertecPrinter.imprimeBarCode("Gertec Developer Partner", 240,240,"QR_CODE");
+            gertecPrinter.imprimeTexto("===[Codigo QrCode Gertec IMG]==");
+            gertecPrinter.imprimeBarCodeIMG("Gertec Developer Partner IMG", 240,240,"QR_CODE");
+
             gertecPrinter.avancaLinha(100);
 
         } catch (Exception e) {

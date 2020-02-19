@@ -25,7 +25,6 @@ public class NfcExemploId extends AppCompatActivity {
     // Class MifareClassic tipo de cartao q ele vai ler os 2 mais usados no mercado, cada um trabalha de uma maneira, grava texto, grava por setor
     // depende do cartao o nosso desenvolvimento
     private MifareClassic mifareClassic;
-    private MifareUltralight mifareUltralight;
 
     // Tag do Cartão
     private Tag tag;
@@ -42,15 +41,23 @@ public class NfcExemploId extends AppCompatActivity {
         setContentView(R.layout.nfcexemploid);
         text = findViewById(R.id.lblText);
     }
-    //ciclo de vida do activity
+
+    /*
+    * Trecho principal pra ligar o NFC
+    * Caso não exista esse código dentro do onStart, a NFC não vai funcionar.
+    * */
     @Override
-    protected void onStart() { //trecho principal pra ligar o NFC
+    protected void onStart() {
         super.onStart();
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
     }
 
+    /*
+     * Filtrar todas as tags que queremos define as tags de cartao, passa pro ident filter
+     *
+     * */
     @Override
-    protected void onResume() { //filtrar todas as tags que queremos define as tabs de cartao, passa pro ident filter
+    protected void onResume() {
         super.onResume();
 
         Log.d(TAG, "onResume");
@@ -63,13 +70,20 @@ public class NfcExemploId extends AppCompatActivity {
 
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+
+        // Deixa o sensor da NFC em alerta.
         if(nfcAdapter!= null)
             nfcAdapter.enableForegroundDispatch(this, pendingIntent, nfcIntentFilter, null);
 
     }
 
+    /*
+     * Todo os retornos da NFC devem ser tratados nesse método.
+     * Aqui deve ser feito todos os tratamentos para converter do id do cartão de Byte para Int ou String
+     *
+     * */
     @Override
-    protected void onNewIntent(Intent intent) { //carrega a aplicação
+    protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         try {
             tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
@@ -91,7 +105,7 @@ public class NfcExemploId extends AppCompatActivity {
     }
 
     // Converte o ID do cartão que esta em Bytes para String
-    public String idCartao() { //de bite pra string depois
+    public String idCartao() {
 
         byte[] idCartao = mifareClassic.getTag().getId();
         long result = 0;
@@ -102,8 +116,19 @@ public class NfcExemploId extends AppCompatActivity {
             result <<= 8;
             result |= idCartao[i] & 0x0FF;
         }
-        Log.d(TAG, "ID Cartão: " + Long.toString(result));
+        Log.d(TAG, "ID Cartão INT: " + Long.toString(result));
+        Log.d(TAG, "ID Cartão HEX: " + bytesToHex(idCartao));
         return Long.toString(result);
+        
+    }
+
+    private static String bytesToHex(byte[] hashInBytes) {
+
+        StringBuilder sb = new StringBuilder();
+        for (byte b : hashInBytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
     }
 
 }

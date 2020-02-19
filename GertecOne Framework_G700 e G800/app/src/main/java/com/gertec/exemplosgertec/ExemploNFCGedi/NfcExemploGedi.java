@@ -52,6 +52,7 @@ public class NfcExemploGedi extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        // Liga o Sensor da NFC
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
     }
 
@@ -60,13 +61,18 @@ public class NfcExemploGedi extends AppCompatActivity {
         super.onNewIntent(intent);
         try {
             icl = GEDI.getInstance().getCL();
+            // Inicializa a Leitura da NFC segura
+            icl.PowerOn();
             pollingInfo = new GEDI_CL_st_ISO_PollingInfo();
+            // Tempo que será aguardado para fazer a leitura
             pollingInfo = icl.ISO_Polling(100);
+            icl.PowerOff();
             LerCard();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     @Override
     protected void onResume() {
@@ -91,7 +97,7 @@ public class NfcExemploGedi extends AppCompatActivity {
     public void LerCard(){
 
         String mensagem;
-
+        // Pega o Id do Cartão em Bytes
         mensagem = LerDados(pollingInfo.abUID);
         Contagem += 1;
         text.setText("Contador: " + Contagem +  "\nID Cartão: " + mensagem);
@@ -109,6 +115,17 @@ public class NfcExemploGedi extends AppCompatActivity {
             result |= dados[i] & 0x0FF;
         }
         Log.d(TAG, "ID Cartão: " + Long.toString(result));
+        Log.d(TAG, "ID Cartão HEX: " + bytesToHex(dados));
+        
         return Long.toString(result);
+    }
+
+    private static String bytesToHex(byte[] hashInBytes) {
+
+        StringBuilder sb = new StringBuilder();
+        for (byte b : hashInBytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
     }
 }

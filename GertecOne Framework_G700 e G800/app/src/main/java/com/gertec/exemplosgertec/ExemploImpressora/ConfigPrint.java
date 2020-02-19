@@ -25,7 +25,7 @@ public class ConfigPrint {
         this.negrito = true;
         this.italico = true;
         this.sublinhado = false;
-        this.avancaLinhas = 10;
+        this.avancaLinhas = 0;
     }
 
     public ConfigPrint(String fonte,

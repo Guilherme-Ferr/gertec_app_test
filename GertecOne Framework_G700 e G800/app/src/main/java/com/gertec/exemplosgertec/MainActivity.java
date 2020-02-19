@@ -22,11 +22,11 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String G700x = "GPOS700";
-    public static final String G800x = "Smart G800";
+    public static final String G700 = "GPOS700";
+    public static final String G800 = "Smart G800";
     private static final String version = "RC03";
 
-    String modelo = Build.MODEL;
+    public static String Model = Build.MODEL;
 
     ArrayList<Projeto> projetos = new ArrayList<Projeto>();
     ListView lvProjetos;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         projetos.add(new Projeto("Impressão",R.drawable.print));
 
 
-        if(modelo.equals(G700x)){
+        if(Model.equals(G700)){
             projetos.add(new Projeto("NFC Gedi",R.drawable.nfc));
             projetos.add(new Projeto("NFC Id",R.drawable.nfc1));
         }else{
