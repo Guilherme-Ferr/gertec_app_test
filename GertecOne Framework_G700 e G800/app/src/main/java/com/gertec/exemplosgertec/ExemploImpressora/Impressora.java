@@ -107,10 +107,12 @@ public class Impressora extends AppCompatActivity implements View.OnClickListene
 
             case R.id.btnImprimir:
                 try{
-                    // printGpos800.imprimeTextoNormal(txtMensagemImpressao.getText().toString());
+                    if(txtMensagemImpressao.getText().toString().equals("")){
+                        Toast.makeText(getApplicationContext(), "Escreva uma mensagem", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     imprimir();
                 } catch (Exception e) {
-                    e.printStackTrace();
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
                 break;
@@ -217,11 +219,6 @@ public class Impressora extends AppCompatActivity implements View.OnClickListene
     @TargetApi(Build.VERSION_CODES.O)
     protected void imprimir() throws Exception {
 
-        if(txtMensagemImpressao.getText().toString().equals("")){
-            txtMensagemImpressao.setFocusable(View.FOCUSABLE);
-            throw new Exception("Escreva uma mensagem");
-        }
-
         // Configura o alinhamento da impressão
         if (rbEsquerda.isChecked()){
             configPrint.setAlinhamento("LEFT");
@@ -282,6 +279,7 @@ public class Impressora extends AppCompatActivity implements View.OnClickListene
         configPrint.setTamanho(20);
         configPrint.setFonte("MONOSPACE");
         gertecPrinter.setConfigImpressao(configPrint);
+
         try {
             gertecPrinter.getStatusImpressora();
             // Imprimindo Imagem

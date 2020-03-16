@@ -20,7 +20,6 @@ import br.com.gertec.gedi.enums.GEDI_PRNTR_e_Alignment;
 import br.com.gertec.gedi.enums.GEDI_PRNTR_e_BarCodeType;
 import br.com.gertec.gedi.enums.GEDI_PRNTR_e_Status;
 import br.com.gertec.gedi.exceptions.GediException;
-import br.com.gertec.gedi.interfaces.ICL;
 import br.com.gertec.gedi.interfaces.IGEDI;
 import br.com.gertec.gedi.interfaces.IPRNTR;
 import br.com.gertec.gedi.structs.GEDI_PRNTR_st_BarCodeConfig;
@@ -52,16 +51,16 @@ public class GertecPrinter {
 
 
     /**
-     * Método construtor da classe
+     * Método construtor da classe usando o GPOS 700
      * @param c = Context  atual que esta sendo inicializada a class
-     * */
+     **/
     public GertecPrinter(Context c) {
         this.context = c;
         startIGEDI();
     }
 
     /**
-     * Método construtor da classe
+     * Método construtor da classe TSG 800
      * @param a = Activity  atual que esta sendo inicializada a class
      *
     public GertecPrinter(Activity a) {
@@ -71,12 +70,12 @@ public class GertecPrinter {
     */
 
     /**
-     * Método que instância a classe GEDI da lib
+     * Método que instância a classe GEDI da lib deve ser usado apenas para o GPOS 700
      *
      * @apiNote = Este mátodo faz a instância da classe GEDI através de uma Thread.
      *            Será sempre chamado na construção da classe.
      *            Não alterar...
-     * */
+     **/
     private void startIGEDI() {
         new Thread(() -> {
             GEDI.init(this.context);
@@ -91,7 +90,7 @@ public class GertecPrinter {
     }
 
     /**
-     * Método que instância a classe GEDI da lib
+     * Método que instância a classe GEDI da lib deve ser usado sempre o TSG 800
      *
      * @apiNote = Este mátodo faz a instância da classe GEDI através de uma Thread.
      *            Será sempre chamado na construção da classe.
@@ -228,8 +227,10 @@ public class GertecPrinter {
             }
             tamanhoOld = this.configPrint.getTamanho();
             this.configPrint.setTamanho(tamanho);
+            this.setConfigImpressao(this.configPrint);
             sPrintLine(texto);
             this.configPrint.setTamanho(tamanhoOld);
+            this.setConfigImpressao(this.configPrint);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -260,10 +261,11 @@ public class GertecPrinter {
             }
             negritoOld = this.configPrint.isNegrito();
             this.configPrint.setNegrito(negrito);
-
+            this.setConfigImpressao(this.configPrint);
             sPrintLine(texto);
 
             this.configPrint.setNegrito(negritoOld);
+            this.setConfigImpressao(this.configPrint);
 
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -299,11 +301,12 @@ public class GertecPrinter {
             italicoOld = this.configPrint.isItalico();
             this.configPrint.setNegrito(negrito);
             this.configPrint.setItalico(italico);
-
+            this.setConfigImpressao(this.configPrint);
             sPrintLine(texto);
 
             this.configPrint.setNegrito(negritoOld);
             this.configPrint.setItalico(italicoOld);
+            this.setConfigImpressao(this.configPrint);
 
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -343,12 +346,13 @@ public class GertecPrinter {
             this.configPrint.setNegrito(negrito);
             this.configPrint.setItalico(italico);
             this.configPrint.setSublinhado(sublinhado);
-
+            this.setConfigImpressao(this.configPrint);
             sPrintLine(texto);
 
             this.configPrint.setNegrito(negritoOld);
             this.configPrint.setItalico(italicoOld);
             this.configPrint.setSublinhado(sublinhadoOld);
+            this.setConfigImpressao(this.configPrint);
 
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -445,7 +449,6 @@ public class GertecPrinter {
             //Bar Code Type
             barCodeConfig.barCodeType = GEDI_PRNTR_e_BarCodeType.valueOf(barCodeType);
 
-
             //Height
             barCodeConfig.height = height;
             //Width
@@ -454,8 +457,7 @@ public class GertecPrinter {
             ImpressoraInit();
             this.iPrint.DrawBarCode(barCodeConfig,texto);
             this.avancaLinha(configPrint.getAvancaLinhas());
-            //ImpressoraOutput();
-            //this.iPrint.Output();
+
             return true;
         }catch (IllegalArgumentException e){
             throw new IllegalArgumentException(e);
@@ -609,5 +611,4 @@ public class GertecPrinter {
 
         return retorno;
     }
-
 }
