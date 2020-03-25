@@ -6,12 +6,21 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.Build;
+
+import com.gertec.exemplosgertec.MainActivity;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import br.com.gertec.gedi.GEDI;
 import br.com.gertec.gedi.enums.GEDI_PRNTR_e_Alignment;
 import br.com.gertec.gedi.enums.GEDI_PRNTR_e_BarCodeType;
 import br.com.gertec.gedi.enums.GEDI_PRNTR_e_Status;
 import br.com.gertec.gedi.exceptions.GediException;
+import br.com.gertec.gedi.impl.Gedi;
 import br.com.gertec.gedi.interfaces.IGEDI;
 import br.com.gertec.gedi.interfaces.IPRNTR;
 import br.com.gertec.gedi.structs.GEDI_PRNTR_st_BarCodeConfig;
@@ -42,31 +51,34 @@ public class GertecPrinter {
     private Typeface typeface;
 
 
-    /**
-     * Método construtor da classe
-     * @param a = Activity atual que esta sendo inicializada a class
-     * @param c = Context  atual que esta sendo inicializada a class
-     * */
-    public GertecPrinter(Activity a, Context c) {
-        this.activity = a;
-        this.context = c;
-        startIGEDI();
-    }
 
     /**
-     * Método que instância a classe GEDI da lib
+     * Método construtor da classe TSG 800
+     * @param a = Activity  atual que esta sendo inicializada a class
+     */
+    public GertecPrinter(Activity a) {
+        this.activity = a;
+        startIGEDI(a);
+    }
+
+
+
+    /**
+     * Método que instância a classe GEDI da lib deve ser usado sempre o TSG 800
      *
      * @apiNote = Este mátodo faz a instância da classe GEDI através de uma Thread.
      *            Será sempre chamado na construção da classe.
      *            Não alterar...
-     * */
-    private void startIGEDI() {
+     *
+     */
+    private void startIGEDI(Activity a) {
         new Thread(() -> {
-            this.iGedi = GEDI.getInstance(activity);
+            iGedi = new Gedi(a);
+            this.iGedi = GEDI.getInstance(a);
             this.iPrint = this.iGedi.getPRNTR();
             try {
-                this.ImpressoraInit();
-            } catch (GediException e) {
+                new Thread().sleep(250);
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }).start();
@@ -189,8 +201,10 @@ public class GertecPrinter {
             }
             tamanhoOld = this.configPrint.getTamanho();
             this.configPrint.setTamanho(tamanho);
+            this.setConfigImpressao(this.configPrint);
             sPrintLine(texto);
             this.configPrint.setTamanho(tamanhoOld);
+            this.setConfigImpressao(this.configPrint);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }
@@ -221,10 +235,11 @@ public class GertecPrinter {
             }
             negritoOld = this.configPrint.isNegrito();
             this.configPrint.setNegrito(negrito);
-
+            this.setConfigImpressao(this.configPrint);
             sPrintLine(texto);
 
             this.configPrint.setNegrito(negritoOld);
+            this.setConfigImpressao(this.configPrint);
 
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -260,11 +275,12 @@ public class GertecPrinter {
             italicoOld = this.configPrint.isItalico();
             this.configPrint.setNegrito(negrito);
             this.configPrint.setItalico(italico);
-
+            this.setConfigImpressao(this.configPrint);
             sPrintLine(texto);
 
             this.configPrint.setNegrito(negritoOld);
             this.configPrint.setItalico(italicoOld);
+            this.setConfigImpressao(this.configPrint);
 
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -304,12 +320,13 @@ public class GertecPrinter {
             this.configPrint.setNegrito(negrito);
             this.configPrint.setItalico(italico);
             this.configPrint.setSublinhado(sublinhado);
-
+            this.setConfigImpressao(this.configPrint);
             sPrintLine(texto);
 
             this.configPrint.setNegrito(negritoOld);
             this.configPrint.setItalico(italicoOld);
             this.configPrint.setSublinhado(sublinhadoOld);
+            this.setConfigImpressao(this.configPrint);
 
         }catch (Exception e){
             throw new Exception(e.getMessage());
@@ -346,8 +363,10 @@ public class GertecPrinter {
      * @throws GediException = retorna o código do erro.
      *
      * */
-    public boolean imprimeImagem( String imagem ) throws GediException {
+    public boolean imprimeImagem(String imagem) throws GediException {
 
+        int id = 0;
+        Bitmap bmp;
         try {
 
             pictureConfig = new GEDI_PRNTR_st_PictureConfig();
@@ -360,21 +379,19 @@ public class GertecPrinter {
             //Width
             pictureConfig.width = this.configPrint.getiWidth();
 
-            int id = context.getResources().getIdentifier(imagem,"drawable",
-                    context.getPackageName());
-            Bitmap bmp = BitmapFactory.decodeResource(context.getResources(),id);
 
-            //Height
-            // pictureConfig.height = bmp.getHeight();
-            //Width
-            // pictureConfig.width = bmp.getWidth();
+            id = this.activity.getApplicationContext().getResources().getIdentifier(
+                    imagem, "drawable",
+                    this.activity.getApplicationContext().getPackageName());
+            bmp = BitmapFactory.decodeResource(this.activity.getApplicationContext().getResources(), id);
+
 
             ImpressoraInit();
-            this.iPrint.DrawPictureExt(pictureConfig,bmp);
+            this.iPrint.DrawPictureExt(pictureConfig, bmp);
             this.avancaLinha(configPrint.getAvancaLinhas());
-            //ImpressoraOutput();
+
             return true;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e);
         } catch (GediException e) {
             throw new GediException(e.getErrorCode());
@@ -410,13 +427,56 @@ public class GertecPrinter {
             ImpressoraInit();
             this.iPrint.DrawBarCode(barCodeConfig,texto);
             this.avancaLinha(configPrint.getAvancaLinhas());
-            //ImpressoraOutput();
-            //this.iPrint.Output();
+
             return true;
         }catch (IllegalArgumentException e){
             throw new IllegalArgumentException(e);
         } catch (GediException e) {
             throw new GediException(e.getErrorCode());
+        }
+
+    }
+
+    /**
+     * Método que faz a impressão de código de barras
+     *
+     * @param texto = Texto que será usado para a impressão do código de barras
+     * @param height  = Tamanho
+     * @param width  = Tamanho
+     * @param barCodeType  = Tipo do código que será impresso
+     *
+     * @throws IllegalArgumentException = Argumento passado ilegal
+     * @throws GediException = retorna o código do erro.
+     *
+     * */
+    public boolean imprimeBarCodeIMG( String texto, int height, int width,  String barCodeType ) throws GediException, WriterException {
+
+        try {
+
+            MultiFormatWriter multiFormatWriter  = new MultiFormatWriter();
+            BitMatrix bitMatrix = multiFormatWriter.encode(texto, BarcodeFormat.valueOf(barCodeType), height, width);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+
+            pictureConfig = new GEDI_PRNTR_st_PictureConfig();
+            pictureConfig.alignment = GEDI_PRNTR_e_Alignment.valueOf(configPrint.getAlinhamento());
+
+            pictureConfig.height = bitmap.getHeight();
+            pictureConfig.width = bitmap.getWidth();
+
+            ImpressoraInit();
+            this.iPrint.DrawPictureExt(pictureConfig, bitmap);
+
+            return true;
+        }catch (IllegalArgumentException e){
+            e.printStackTrace();
+            throw new IllegalArgumentException(e);
+        } catch (GediException e) {
+            e.printStackTrace();
+            throw new GediException(e.getErrorCode());
+        } catch (WriterException e) {
+            e.printStackTrace();
+            throw new WriterException(e);
         }
 
     }
@@ -434,9 +494,11 @@ public class GertecPrinter {
      * */
     public void avancaLinha(int linhas) throws GediException {
         try {
-            this.iPrint.DrawBlankLine(linhas);
+            if(linhas > 0){
+                this.iPrint.DrawBlankLine(linhas);
+            }
         } catch (GediException e) {
-           throw new GediException(e.getErrorCode());
+            throw new GediException(e.getErrorCode());
         }
     }
 
@@ -519,5 +581,4 @@ public class GertecPrinter {
 
         return retorno;
     }
-
 }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
+import android.nfc.tech.IsoDep;
 import android.nfc.tech.MifareClassic;
 import android.nfc.tech.MifareUltralight;
 import android.os.Bundle;
@@ -22,9 +23,14 @@ public class NfcExemploId extends AppCompatActivity {
 
     // Adaptador NFC
     private NfcAdapter nfcAdapter;
-    // Class MifareClassic tipo de cartao q ele vai ler os 2 mais usados no mercado, cada um trabalha de uma maneira, grava texto, grava por setor
+
+    // Class MifareClassic tipo de cartao q ele vai ler os 2 mais usados no mercado,
+    // cada um trabalha de uma maneira, grava texto, grava por setor
     // depende do cartao o nosso desenvolvimento
     private MifareClassic mifareClassic;
+
+    // Class IsoDep
+    private IsoDep isoDep;
 
     // Tag do Cartão
     private Tag tag;
@@ -100,6 +106,9 @@ public class NfcExemploId extends AppCompatActivity {
     // Faz a leitura do ID do cartão
     protected void LerCartaoNfc(){
         mifareClassic = MifareClassic.get(tag);
+        if(mifareClassic == null){
+            isoDep = IsoDep.get(tag);
+        }
         Contador += 1;
         text.setText("Leitura: " + Contador + "\nId do Cartão: " + idCartao());
     }
@@ -107,8 +116,14 @@ public class NfcExemploId extends AppCompatActivity {
     // Converte o ID do cartão que esta em Bytes para String
     public String idCartao() {
 
-        byte[] idCartao = mifareClassic.getTag().getId();
+        byte[] idCartao = null;
         long result = 0;
+
+        if(mifareClassic != null){
+            idCartao = mifareClassic.getTag().getId();
+        }else if (isoDep != null){
+            idCartao = isoDep.getTag().getId();
+        }
 
         if (idCartao == null) return "";
 
