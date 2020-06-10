@@ -9,25 +9,30 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gertec.exemplosgertec.ExemploCodigoBarras1.CodigoBarras1;
 import com.gertec.exemplosgertec.ExemploCodigoBarras2.CodigoBarras2;
+import com.gertec.exemplosgertec.ExemploNFCGedi.NfcExemploGedi;
+import com.gertec.exemplosgertec.ExemploNFCId.NfcExemploId;
 import com.gertec.exemplosgertec.ExemploNFCIdRW.NfcExemplo;
 import com.gertec.exemplosgertec.ExemploImpressora.Impressora;
-import com.gertec.exemplosgertec.ExemploSAT.MenuSat;
+import com.gertec.exemplosgertec.ExemploTEF.Tef;
+
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String G800 = "Smart G800";
-    private static final String version = "RC02";
+    public static final String G700 = "GPOS700";
+    private static final String version = "RC03";
 
-    TextView txtProject;
+    public static String Model = Build.MODEL;
 
     ArrayList<Projeto> projetos = new ArrayList<Projeto>();
     ListView lvProjetos;
+
+    TextView txtProject;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +47,17 @@ public class MainActivity extends AppCompatActivity {
         projetos.add(new Projeto("Código de Barras", R.drawable.barcode));
         projetos.add(new Projeto("Código de Barras V2",R.drawable.qr_code));
         projetos.add(new Projeto("Impressão",R.drawable.print));
-        projetos.add(new Projeto("NFC Leitura/Gravação",R.drawable.nfc2));
-        projetos.add(new Projeto("SAT",R.drawable.icon_sat));
+
+
+        if(Model.equals(G700)){
+            projetos.add(new Projeto("NFC Gedi",R.drawable.nfc));
+            projetos.add(new Projeto("NFC Id",R.drawable.nfc1));
+
+        }else{
+            projetos.add(new Projeto("NFC Leitura/Gravação",R.drawable.nfc2));
+        }
+
+        projetos.add(new Projeto("TEF", R.drawable.tef));
 
         ProjetoAdapter adapter = new ProjetoAdapter(getBaseContext(), R.layout.listprojetos, projetos);
         lvProjetos.setAdapter(adapter);
@@ -55,24 +69,37 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = null;
                 switch (projeto.getNome()){
                     case "Código de Barras":
+                        // Toast.makeText(getApplicationContext(), projeto.getNome(), Toast.LENGTH_LONG).show();
                         intent = new Intent(MainActivity.this, CodigoBarras1.class);
                         break;
                     case "Código de Barras V2":
+                        // Toast.makeText(getApplicationContext(), projeto.getNome(), Toast.LENGTH_LONG).show();
                         intent = new Intent(MainActivity.this, CodigoBarras2.class);
                         break;
                     case "Impressão":
+                        // Toast.makeText(getApplicationContext(), projeto.getNome(), Toast.LENGTH_LONG).show();
                         intent = new Intent(MainActivity.this, Impressora.class);
                         break;
+                    case "NFC Gedi":
+                        intent = new Intent(MainActivity.this, NfcExemploGedi.class);
+                        // Toast.makeText(getApplicationContext(), projeto.getNome(), Toast.LENGTH_LONG).show();
+                        break;
+                    case "NFC Id":
+                        intent = new Intent(MainActivity.this, NfcExemploId.class);
+                        // Toast.makeText(getApplicationContext(), projeto.getNome(), Toast.LENGTH_LONG).show();
+                        break;
                     case "NFC Leitura/Gravação":
+                        // Toast.makeText(getApplicationContext(), projeto.getNome(), Toast.LENGTH_LONG).show();
+                        // intent = new Intent(MainActivity.this, NfcActivity.class);
                         intent = new Intent(MainActivity.this, NfcExemplo.class);
                         break;
-                    case "SAT":
-                        intent = new Intent(MainActivity.this, MenuSat.class);
+                    case "TEF":
+                        intent = new Intent(MainActivity.this, Tef.class);
                         break;
                 }
                 if(intent != null){
                     startActivity(intent);
-                }
+                }   
             }
         });
     }
