@@ -64,16 +64,16 @@ Nosso Canal de vídeos: [Gertec Developer YouTube](https://www.youtube.com/gerte
 # TEF no GPOS (MSITEF ou GER7 com GPOS700). 
 Para saber o preço e a modalidade comercial pra uso do TEF SwExpress ou Ger7  com o GPOS700, favor tratar com
 
-  - Wilmar Poli wilmar.poli@gertec.com.br  Celular 011 98833 6696
+  - **Wilmar Poli** wilmar.poli@gertec.com.br  Celular 011 98833 6696
 
 
 ## Software Express
 Para ter acesso a documentação, Simuladores e Roteiros de homologação, favor entrar em contato com:
 
-**Fernanda Ramos**
+#### **Fernanda Ramos**
 fernanda.ramos@softwareexpress.com.br
 
-**Ger7**
+#### **Ger7**
 
 Para ter acesso a documentação, Simuladores e Roteiros de homologação, favor se cadastrarem no seguinte link:
 
@@ -81,6 +81,7 @@ https://integracao.ger7.com.br/
 
 Fiquem com meu contato, estou a inteira disposição
 
-### **Claudenir Andrade**
-#### 011 9 8137 0262 
-#### claudenir.andrade@gertec.com.br.
+#### **Claudenir Andrade**
+011 9 8137 0262 
+
+claudenir.andrade@gertec.com.br.
