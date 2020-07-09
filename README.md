@@ -49,6 +49,7 @@ Como adquirir?
   2. pode me enviar Claudenir.andrade@gertec.com.br
 
 O TSG800 você pode adquirir direto de nosso e-commerce com uma promoção para Desenvolvedor
+
 [Click aqui adquirir um TSG 800](
 https://loja.gertec.com.br/produto/terminal-smart-g800-para-desenvolvimento/)
 
