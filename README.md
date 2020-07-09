@@ -15,8 +15,9 @@ Seja capaz de executar em curto período de tempo as diversas funcionalidades pa
 
 # Gertec Developer
 Quero fazer parte da Comunidade e receber informações. 
-Está bem fácil. 
-Cadastre-se aqui https://www.gertec.com.br/login/software-house/cadastro/
+Está bem fácil.
+ 
+[Cadastre-se aqui]( https://www.gertec.com.br/login/software-house/cadastro/)
 
 # GPOS700, TSG800, MP5
 GPOS700 é o POS com PCI e que permite você desenvolver um aplicativo Android nele e colocar a solução de cartão de credito também dentro dele. 
@@ -27,11 +28,11 @@ MP5 em breve teremos novidades sobre este Pinpad Bluetooth para você desenvolve
 
 Em nosso site você pode ter acesso a mais informações, seguem links:
 
-G700 https://www.gertec.com.br/produtos/gpos700/
+**G700** https://www.gertec.com.br/produtos/gpos700/
 
-G800 https://www.gertec.com.br/produtos/tsg800/
+**G800** https://www.gertec.com.br/produtos/tsg800/
 
-MP5 https://www.gertec.com.br/produtos/mp5/
+**MP5** https://www.gertec.com.br/produtos/mp5/
 
 # PILOTO MP5
 Desejo participar o Piloto com o Pinpad Bluetooth MP5, como fazer? Super simples, me envie um e-mail com seu nome e telefone para **claudenir.andrade@gertec.com.br** com o título **“Piloto MP5”**.
@@ -48,7 +49,8 @@ Como adquirir?
   2. pode me enviar Claudenir.andrade@gertec.com.br
 
 O TSG800 você pode adquirir direto de nosso e-commerce com uma promoção para Desenvolvedor
-https://loja.gertec.com.br/produto/terminal-smart-g800-para-desenvolvimento/
+[Click aqui adquirir um TSG 800](
+https://loja.gertec.com.br/produto/terminal-smart-g800-para-desenvolvimento/)
 
 Código de Promoção : **TSG800DEV**
 
