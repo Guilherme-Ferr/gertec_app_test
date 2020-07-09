@@ -55,7 +55,7 @@ Código de Promoção : **TSG800DEV**
 Aplicando o código acima o preço fica em 999,00 Até 12X no Cartão  
 
 # GITHUB e VIDEOS
-Nosso GitHub: [Gertec Developer](www.github.com/gertecdeveloper)
+Nosso GitHub: [Gertec Developer](https://github.com/gertecdeveloper)
 
 Nosso Canal de vídeos: https://www.youtube.com/gertecdeveloper
   - Video **“Out-Of-box”** do TSG800 e GPOS700 https://www.youtube.com/watch?v=bW101g2mSgI&t=0s
