@@ -57,9 +57,9 @@ Aplicando o código acima o preço fica em 999,00 Até 12X no Cartão
 # GITHUB e VIDEOS
 Nosso GitHub: [Gertec Developer](https://github.com/gertecdeveloper)
 
-Nosso Canal de vídeos: https://www.youtube.com/gertecdeveloper
-  - Video **“Out-Of-box”** do TSG800 e GPOS700 https://www.youtube.com/watch?v=bW101g2mSgI&t=0s
-  - Playlist completa https://www.youtube.com/channel/UC4TWI9_yIQkOBqQMv6TN0Mg/videos
+Nosso Canal de vídeos: [Gertec Developer YouTube](https://www.youtube.com/gertecdeveloper)
+  - [Video **“Out-Of-box”** do TSG800 e GPOS700]( https://www.youtube.com/watch?v=bW101g2mSgI&t=0s)
+  - [Playlist completa](https://www.youtube.com/c/GertecDeveloper/videos)
 
 # TEF no GPOS (MSITEF ou GER7 com GPOS700). 
 Para saber o preço e a modalidade comercial pra uso do TEF SwExpress ou Ger7  com o GPOS700, favor tratar com
