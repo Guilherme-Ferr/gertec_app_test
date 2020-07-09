@@ -81,6 +81,6 @@ https://integracao.ger7.com.br/
 
 Fiquem com meu contato, estou a inteira disposição
 
-**Claudenir Andrade**
-011 9 8137 0262 
+**Claudenir Andrade**··
+011 9 8137 0262 ··
 claudenir.andrade@gertec.com.br.
