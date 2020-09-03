@@ -38,9 +38,10 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
+
 }
 
 dependencies {
@@ -58,6 +59,10 @@ dependencies {
     // Lib para código de barras
     implementation 'me.dm7.barcodescanner:zxing:1.9.8'
     implementation('com.journeyapps:zxing-android-embedded:3.4.0')
+
+
+    // lib para utilizar o Sat
+    implementation(name: 'SatGerLib', ext: 'aar')
 
     // Lib exclusiva para o GPOS700
     implementation(name: 'payment-1.14.10.181016', ext: 'aar')

@@ -123,7 +123,12 @@ public class Tef extends AppCompatActivity {
         rbAdm = findViewById(R.id.radioAdm);
 
         // Inicializa o CheckBox
+
+        //* Caso seja M-sitef, este parâmetro não surge efeito (linhas comentadas na funções do M-Sitef (Abaixo)), pois na versão v3.70 está opção foi removida do Sitef **
         cbImpressao = findViewById(R.id.cbImpressao);
+        cbImpressao.setEnabled(false);
+        cbImpressao.setChecked(false);
+
         rbGer7 = findViewById(R.id.rbGer7);
         rbMsitef = findViewById(R.id.rbMsitef);
         // Adiciona mascara nos campos
@@ -162,8 +167,11 @@ public class Tef extends AppCompatActivity {
         rbMsitef.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
                 if (rbMsitef.isChecked()) {
+                    cbImpressao.setChecked(false);
+                    cbImpressao.setEnabled(false);  //* Caso seja M-sitef, este parâmetro não surge efeito (linhas comentadas na funções do M-Sitef (Abaixo)), pois na versão v3.70 está opção foi removida do Sitef **
                     txtIpServidor.setEnabled(true);
                 } else {
+                    cbImpressao.setEnabled(true);
                     txtIpServidor.setEnabled(false);
                 }
             }
@@ -283,7 +291,7 @@ public class Tef extends AppCompatActivity {
                         impressao += retornoSitef.textoImpressoCliente();
                     }
                     if (!retornoSitef.textoImpressoEstabelecimento().isEmpty()) {
-                        impressao+= "\n\n-----------------------------     \n";
+                        impressao += "\n\n-----------------------------     \n";
                         impressao += retornoSitef.textoImpressoEstabelecimento();
                     }
                     if (!impressao.isEmpty()) {
@@ -466,9 +474,9 @@ public class Tef extends AppCompatActivity {
     }
 
 
-    public void ImprimaGer7(String CupomTEF){
+    public void ImprimaGer7(String CupomTEF) {
 
-        if(!CupomTEF.isEmpty()) {
+        if (!CupomTEF.isEmpty()) {
 
 
             int curPos = 0;
@@ -507,8 +515,8 @@ public class Tef extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                String textoEstabelecimento="";
-                String textoCliente="";
+                String textoEstabelecimento = "";
+                String textoCliente = "";
 
                 configPrint.setAlinhamento("LEFT");
                 configPrint.setFonte("MONOSPACE");
@@ -522,13 +530,13 @@ public class Tef extends AppCompatActivity {
                         gertecPrinter.setConfigImpressao(configPrint);
                         if (rbGer7.isChecked()) {
 
-                            textoEstabelecimento =  texto.substring(0, texto.indexOf("\f"));
+                            textoEstabelecimento = texto.substring(0, texto.indexOf("\f"));
                             textoCliente = texto.substring(texto.indexOf("\f"));
 
                             ImprimaGer7(textoEstabelecimento);
                             gertecPrinter.avancaLinha(100);
                             ImprimaGer7(textoCliente);
-                        }else{
+                        } else {
                             gertecPrinter.imprimeTexto(texto);
                         }
                         gertecPrinter.avancaLinha(150);
@@ -592,11 +600,14 @@ public class Tef extends AppCompatActivity {
 
         intentSitef.putExtra("isDoubleValidation", "0");
         intentSitef.putExtra("caminhoCertificadoCA", "ca_cert_perm");
-        if (cbImpressao.isChecked()) {
-            intentSitef.putExtra("comprovante", "1");
-        } else {
-            intentSitef.putExtra("comprovante", "0");
-        }
+
+        // ** Removida esta opção v3.70 **
+
+//        if (cbImpressao.isChecked()) {
+//            intentSitef.putExtra("comprovante", "1");
+//        } else {
+//            intentSitef.putExtra("comprovante", "0");
+//        }
 
         startActivityForResult(intentSitef, REQ_CODE);
     }
@@ -619,11 +630,14 @@ public class Tef extends AppCompatActivity {
 
         intentSitef.putExtra("isDoubleValidation", "0");
         intentSitef.putExtra("caminhoCertificadoCA", "ca_cert_perm");
-        if (cbImpressao.isChecked()) {
-            intentSitef.putExtra("comprovante", "1");
-        } else {
-            intentSitef.putExtra("comprovante", "0");
-        }
+
+        // ** Removida esta opção v3.70 **
+
+        //        if (cbImpressao.isChecked()) {
+        //            intentSitef.putExtra("comprovante", "1");
+        //        } else {
+        //            intentSitef.putExtra("comprovante", "0");
+        //        }
 
         startActivityForResult(intentSitef, REQ_CODE);
     }
@@ -644,11 +658,14 @@ public class Tef extends AppCompatActivity {
 
         intentSitef.putExtra("isDoubleValidation", "0");
         intentSitef.putExtra("caminhoCertificadoCA", "ca_cert_perm");
-        if (cbImpressao.isChecked()) {
-            intentSitef.putExtra("comprovante", "1");
-        } else {
-            intentSitef.putExtra("comprovante", "0");
-        }
+
+        // ** Removida esta opção v3.70 **
+
+        //        if (cbImpressao.isChecked()) {
+        //            intentSitef.putExtra("comprovante", "1");
+        //        } else {
+        //            intentSitef.putExtra("comprovante", "0");
+        //        }
 
         intentSitef.putExtra("modalidade", "110");
         intentSitef.putExtra("restricoes", "transacoesHabilitadas=16;26;27");
@@ -674,11 +691,13 @@ public class Tef extends AppCompatActivity {
 
         intentSitef.putExtra("isDoubleValidation", "0");
         intentSitef.putExtra("caminhoCertificadoCA", "ca_cert_perm");
-        if (cbImpressao.isChecked()) {
-            intentSitef.putExtra("comprovante", "1");
-        } else {
-            intentSitef.putExtra("comprovante", "0");
-        }
+        // ** Removida esta opção v3.70 **
+
+        //        if (cbImpressao.isChecked()) {
+        //            intentSitef.putExtra("comprovante", "1");
+        //        } else {
+        //            intentSitef.putExtra("comprovante", "0");
+        //        }
         startActivityForResult(intentSitef, REQ_CODE);
     }
 

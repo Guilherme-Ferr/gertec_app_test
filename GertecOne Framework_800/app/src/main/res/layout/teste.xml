@@ -46,7 +46,7 @@
         android:layout_width="282dp"
         android:layout_height="50dp"
         android:backgroundTint="#D6D4D4"
-        android:text="Status"
+        android:text="Status operacional"
         android:textColor="#000000"
         android:textStyle="bold" />
 

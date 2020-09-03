@@ -4,7 +4,7 @@ public class ConfigPrint {
 
     private String fonte = "NORMAL";
     private String alinhamento;
-    private int tamanho;
+    private int     tamanho;
     private int offSet;
     private int iHeight;
     private int iWidth;

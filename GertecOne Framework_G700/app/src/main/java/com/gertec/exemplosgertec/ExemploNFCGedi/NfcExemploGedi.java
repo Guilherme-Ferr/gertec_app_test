@@ -39,12 +39,7 @@ public class NfcExemploGedi extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //G800
-                GEDI.init(getParent());
-
-                //G700
-                //GEDI.init(getApplicationContext());
-
+                GEDI.init(getApplicationContext());
             }
         }).start();
     }

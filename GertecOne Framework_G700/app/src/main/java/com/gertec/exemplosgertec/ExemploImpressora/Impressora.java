@@ -272,7 +272,6 @@ public class Impressora extends AppCompatActivity implements View.OnClickListene
 
 
     private void ImprimeTodasAsFucoes(){
-
         configPrint.setItalico(false);
         configPrint.setNegrito(true);
         configPrint.setTamanho(20);

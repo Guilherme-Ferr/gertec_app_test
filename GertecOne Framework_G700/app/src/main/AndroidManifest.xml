@@ -25,9 +25,16 @@
         <activity android:name=".ExemploCodigoBarras2.CodigoBarras2" />
         <activity android:name=".ExemploImpressora.Impressora" />
         <activity android:name=".ExemploNFCIdRW.NfcExemplo" />
-        <activity android:name=".ExemploNFCId.NfcExemploId" />
-        <activity android:name=".ExemploNFCGedi.NfcExemploGedi" />
+        <activity android:name=".ExemploNFCId.NfcExemploId"/>
+        <activity android:name=".ExemploNFCGedi.NfcExemploGedi"/>
         <activity android:name=".ExemploTEF.Tef"/>
+        <activity android:name=".ExemploSAT.SatPages.MenuSat"/>
+        <activity android:name=".ExemploSAT.SatPages.Teste"/>
+        <activity android:name=".ExemploSAT.SatPages.Rede"/>
+        <activity android:name=".ExemploSAT.SatPages.Ativacao"/>
+        <activity android:name=".ExemploSAT.SatPages.Associar"/>
+        <activity android:name=".ExemploSAT.SatPages.Ferramentas"/>
+        <activity android:name=".ExemploSAT.SatPages.Alterar"/>
     </application>
 
 </manifest>

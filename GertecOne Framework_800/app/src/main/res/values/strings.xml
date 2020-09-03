@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Gertec App</string>
+    <string name="app_name">GertecOne Java</string>
 
     <string name="aproxime_o_cart_o_da_leitora">Aproxime o cartão da leitora.</string>
 
@@ -70,6 +70,7 @@
         <item>MONOSPACE</item>
         <item>SANS SERIF</item>
         <item>SERIF</item>
+        <item>VECTRA.otf</item>
     </string-array>
 
     <string-array name="BarCodes">

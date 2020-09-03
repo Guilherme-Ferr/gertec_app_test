@@ -373,7 +373,7 @@ public class GertecPrinter {
             ImpressoraInit();
             this.iPrint.DrawStringExt(this.stringConfig, texto);
             this.avancaLinha(configPrint.getAvancaLinhas());
-            //ImpressoraOutput();
+//            ImpressoraOutput();
             return true;
         } catch (GediException e) {
             throw new GediException(e.getErrorCode());

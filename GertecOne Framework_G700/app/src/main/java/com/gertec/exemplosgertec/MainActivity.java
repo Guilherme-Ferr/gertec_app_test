@@ -16,6 +16,7 @@ import com.gertec.exemplosgertec.ExemploNFCGedi.NfcExemploGedi;
 import com.gertec.exemplosgertec.ExemploNFCId.NfcExemploId;
 import com.gertec.exemplosgertec.ExemploNFCIdRW.NfcExemplo;
 import com.gertec.exemplosgertec.ExemploImpressora.Impressora;
+import com.gertec.exemplosgertec.ExemploSAT.SatPages.MenuSat;
 import com.gertec.exemplosgertec.ExemploTEF.Tef;
 
 
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static final String G700 = "GPOS700";
-    private static final String version = "RC03";
+    private static final String version = "v1.0.0";
 
     public static String Model = Build.MODEL;
 
@@ -38,11 +39,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         txtProject = findViewById(R.id.txtNameProject);
         lvProjetos = findViewById(R.id.lvProjetos);
 
-        txtProject.setText("Android Studio - " + version);
+        txtProject.setText("Android Studio "+ version);
 
         projetos.add(new Projeto("Código de Barras", R.drawable.barcode));
         projetos.add(new Projeto("Código de Barras V2",R.drawable.qr_code));
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         projetos.add(new Projeto("TEF", R.drawable.tef));
+        projetos.add(new Projeto("SAT", R.drawable.icon_sat));
 
         ProjetoAdapter adapter = new ProjetoAdapter(getBaseContext(), R.layout.listprojetos, projetos);
         lvProjetos.setAdapter(adapter);
@@ -96,10 +97,13 @@ public class MainActivity extends AppCompatActivity {
                     case "TEF":
                         intent = new Intent(MainActivity.this, Tef.class);
                         break;
+                    case "SAT":
+                        intent = new Intent(MainActivity.this, MenuSat.class);
+                        break;
                 }
                 if(intent != null){
                     startActivity(intent);
-                }   
+                }
             }
         });
     }

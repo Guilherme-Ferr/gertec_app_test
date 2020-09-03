@@ -119,7 +119,7 @@ public class GertecPrinter {
                 this.typeface = Typeface.create(Typeface.SERIF, Typeface.NORMAL );
                 break;
             default:
-                this.typeface = Typeface.createFromAsset(this.context.getAssets(), configPrint.getFonte());
+                this.typeface = Typeface.createFromAsset(this.activity.getAssets(), configPrint.getFonte());
         }
 
         if (this.configPrint.isNegrito() && this.configPrint.isItalico()){
@@ -227,7 +227,7 @@ public class GertecPrinter {
 
         boolean negritoOld = false;
 
-        //this.getStatusImpressora();
+        this.getStatusImpressora();
 
         try{
             if (!isImpressoraOK()) {
