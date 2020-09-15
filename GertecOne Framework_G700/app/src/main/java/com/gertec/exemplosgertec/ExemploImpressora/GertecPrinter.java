@@ -20,6 +20,7 @@ import br.com.gertec.gedi.enums.GEDI_PRNTR_e_Alignment;
 import br.com.gertec.gedi.enums.GEDI_PRNTR_e_BarCodeType;
 import br.com.gertec.gedi.enums.GEDI_PRNTR_e_Status;
 import br.com.gertec.gedi.exceptions.GediException;
+import br.com.gertec.gedi.interfaces.ICL;
 import br.com.gertec.gedi.interfaces.IGEDI;
 import br.com.gertec.gedi.interfaces.IPRNTR;
 import br.com.gertec.gedi.structs.GEDI_PRNTR_st_BarCodeConfig;
@@ -41,6 +42,7 @@ public class GertecPrinter {
     // Classe de impressão
     private IGEDI iGedi = null;
     private IPRNTR iPrint = null;
+    private ICL icl = null;
     private GEDI_PRNTR_st_StringConfig stringConfig;
     private GEDI_PRNTR_st_PictureConfig pictureConfig;
     private GEDI_PRNTR_e_Status status;
@@ -83,6 +85,7 @@ public class GertecPrinter {
             this.iPrint = this.iGedi.getPRNTR();
             try {
                 new Thread().sleep(250);
+                icl = GEDI.getInstance().getCL();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -555,7 +558,8 @@ public class GertecPrinter {
     public void ImpressoraInit() throws GediException {
         try {
             if( this.iPrint != null && !isPrintInit  ){
-                this.iPrint.Init();
+                this.icl.PowerOff();  // Desliga o Módulo de NFC do equipamento.
+                this.iPrint.Init();   // Inicializa a Impressora do equipamento.
                 isPrintInit = true;
             }
         } catch (GediException e) {
