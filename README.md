@@ -73,8 +73,9 @@ Para saber o preço e a modalidade comercial pra uso do TEF SwExpress ou Ger7  c
 ## Software Express
 Para ter acesso a documentação, Simuladores e Roteiros de homologação, favor entrar em contato com:
 
-#### **Fernanda Ramos**
-fernanda.ramos@softwareexpress.com.br
+#### **Wilmar Poli**
+wilmar.poli@gertec.com.br
+Celular 011 98833 6696
 
 #### **Ger7**
 
@@ -84,7 +85,7 @@ https://integracao.ger7.com.br/
 
 Fiquem com meu contato, estou a inteira disposição
 
-#### **Claudenir Andrade**
-011 9 8137 0262 
+#### **Geovani Nogueira**
+011 9 9239 2110 
 
-claudenir.andrade@gertec.com.br.
+geovani.nogueira@gertec.com.br
