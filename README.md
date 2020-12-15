@@ -35,7 +35,7 @@ Em nosso site você pode ter acesso a mais informações, seguem links:
 **MP5** https://www.gertec.com.br/produtos/mp5/
 
 # PILOTO MP5
-Desejo participar o Piloto com o Pinpad Bluetooth MP5, como fazer? Super simples, me envie um e-mail com seu nome e telefone para **claudenir.andrade@gertec.com.br** com o título **“Piloto MP5”**.
+Desejo participar o Piloto com o Pinpad Bluetooth MP5, como fazer? Super simples, me envie um e-mail com seu nome e telefone para **Geovani.nogueira@gertec.com.br** com o título **“Piloto MP5”**.
 
 Assim que tivemos disponível peças para desenvolvedor a preço reduzido e funcionando com a SwExpress e Multi-Chave, vamos te enviar a informação. 
  
@@ -46,7 +46,7 @@ O GPOS700 para Desenvolvedor o valor e de R$1.099,00 em até 5x no cartão ou 28
  
 Como adquirir? 
   1. Preencha esta planilha em anexo com os dados de sua empresa 
-  2. pode me enviar Claudenir.andrade@gertec.com.br
+  2. pode me enviar Geovani.nogueira@gertec.com.br
 
 O TSG800 você pode adquirir direto de nosso e-commerce com uma promoção para Desenvolvedor
 
