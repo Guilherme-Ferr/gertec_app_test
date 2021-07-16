@@ -1,12 +1,4 @@
-[![](https://pbs.twimg.com/media/EKzBdw7WwAQrq8J.png)](https://www.gertec.com.br/)
-
-# Prezados e parceiros e escovadores de Bits!! 
-
-Obrigado por acessarem nosso github!!
-
-Nestes code samples, você encontra exemplos de integração com os terminais Gertec GPOS700 e TSG800 em diversas linguagens tais como Java, Delphi, Flutter, React-Native, Ionic, Xamarin-Android e Xamarin-Forms!
-
-Seja capaz de executar em curto período de tempo as diversas funcionalidades para seu aplicativo:
+[![](https://pbs.twimg.com/media/EKzBdw7WwAQrq8J.png)](https://www.gertec.com.br/)[ReadmeGit.txt](https://github.com/gertecdeveloper/AndroidStudio/files/6830476/ReadmeGit.txt)
 
   - Impressão 
   - Código de Barras
@@ -85,7 +77,8 @@ https://integracao.ger7.com.br/
 
 Fiquem com meu contato, estou a inteira disposição
 
-#### **Geovani Nogueira**
+#### **Geovani Nogueira**[ReadmeGit.txt](https://github.com/gertecdeveloper/AndroidStudio/files/6830481/ReadmeGit.txt)
+
 011 9 9239 2110 
 
 geovani.nogueira@gertec.com.br
