@@ -34,7 +34,7 @@ Assim que tivemos disponível peças para desenvolvedor a preço reduzido e func
 # Desejo adquirir o equipamento para meu desenvolvimento
 A MP5 (Pinpad Bluetooth) ainda não está disponível pra desenvolvedor, em breve estará, sem dúvida e 100% integrado com a SwExpress.
 
-O GPOS700 para Desenvolvedor o valor e de R$1.099,00 em até 5x no cartão ou 28Dias no boleto.
+O GPOS700 para Desenvolvedor o valor e de R$1.099,00 em até 12x no cartão ou 28 dias no boleto.
  
 Como adquirir? 
   1. Preencha esta planilha em anexo com os dados de sua empresa 
@@ -77,8 +77,6 @@ https://integracao.ger7.com.br/
 
 Fiquem com meu contato, estou a inteira disposição
 
-#### **Geovani Nogueira**[ReadmeGit.txt](https://github.com/gertecdeveloper/AndroidStudio/files/6830481/ReadmeGit.txt)
+#### **dev@gertec.com.br**
 
-011 9 9239 2110 
 
-geovani.nogueira@gertec.com.br
