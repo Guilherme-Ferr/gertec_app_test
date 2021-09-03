@@ -60,14 +60,12 @@ Nosso Canal de vídeos: [Gertec Developer YouTube](https://www.youtube.com/gerte
 Para saber mais sobre uso do TEF SwExpress ou Ger7  com o GPOS700, entre em contato com nossa equipe
 
 #### **dev@gertec.com.br**
-#### **integracaotecnologica@gertec.com.br**
 
 
 ## Software Express
 Para ter acesso a documentação, Simuladores e Roteiros de homologação, fale com nossa equipe:
 
 #### **dev@gertec.com.br**
-#### **integracaotecnologica@gertec.com.br**
 
 
 #### **Ger7**
@@ -79,6 +77,4 @@ https://integracao.ger7.com.br/
 Nossa equipe de Integração Tecnologica esta a disposição!
 
 #### **dev@gertec.com.br**
-#### **integracaotecnologica@gertec.com.br**
-
 
